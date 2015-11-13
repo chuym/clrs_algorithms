@@ -11,7 +11,7 @@
  * if some value exists, we also have the value we want to find and
  * in the function we initialize the returned value to NULL.
  *
- * Maintenance: Next, we begin inspecting the algorithm, starting at
+ * Maintenance: Next, we begin inspecting the array, starting at
  * index 0 and incrementing by 1 until we reach the size of the array.
  * If the value at index i is the same as v, then we assign the returned
  * variable to a reference to that value and break the loop. If not

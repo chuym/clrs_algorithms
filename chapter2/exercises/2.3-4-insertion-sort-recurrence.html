@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercise 2.3-4</title>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+
+  <body>
+    <h1>Exercise 2.3-4 from chapter 2 - Getting started</h1>
+    <p>
+      We can express insertion sort as a recursive procedure as follows. In order to sort \(A[1..n]\), we recursively sort \(A[1..n-1]\) and then insert \(A[n]\) into the sorted array \(A[1..n-1]\). Write a recurrence for the worst-case running of this recursive version of insertion sort
+    </p>
+    <p>
+      The worst case scenario for insertion sort happens when the array is already sorted, because \(A[n]\) will be \(A[n]\geq{A[n-1]}\) and then has to iterate over all elements in \(A[1..n]\), which we can easily deduct the complexity to be \(\Theta(n^2)\)</br>
+      With this in mind, then:
+
+      $$
+      I(n) = \begin{cases}
+        1, & \text{if \(n = 1 \)}. \\
+        I(n-1) + C(n - 1), & \text{if \(n > 1\)}.
+      \end{cases}
+      $$
+    </p>
+  </body>
+</html>

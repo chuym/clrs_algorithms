@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercise 2.3-3</title>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+
+  <body>
+    <h1>Exercise 2.3-3 from chapter 2 - Getting started</h1>
+    <p>
+      Use mathematical induction to show that when \(n\) is an exact power of 2, the solution of the recurrence
+      $$
+      T(n)=\begin{cases}
+        2, & \text{if \(n = 2 \)}.\\
+        2T(n/2) + n, & \text{if \(n = 2^k\), for \(k > 1\)}.
+      \end{cases}
+      $$
+      is \(T(n) = n\,\)lg\(\;n\).
+    </p>
+    <p>
+      Note that the recurrence is only defined for power numbers that are powers of two. That is, for the term \(kth\), \(S(k) = T(2^k)\). Let's see if the hypotesis is viable, let's start with the second term in the series:
+      \begin{align}
+        T(4) & = 2T\left(\frac{4}{2}\right) + 4 \\
+        & = 2T(2) + 4 \\
+        & = 4 + 4 \\
+        & = 8
+      \end{align}
+      Next, we check if the hypothesis holds:
+
+      \begin{align}
+        T(4) & = 4\,lg(4) \\
+        & = 4(2) \\
+        & = 8
+      \end{align}
+
+      Now, for the next term \(n = 8\)
+
+      \begin{align}
+        T(8) & = 2T\left(\frac{8}{2}\right) + 8 \\
+        & = 2T(4) + 8 \\
+        & = 16 + 8 \\
+        & = 24 \\
+      \end{align}
+
+      \begin{align}
+        T(8) & = 8\,lg(8) \\
+        & = 8(3) \\
+        & = 24
+      \end{align}
+
+      The hypothesis is viable. Next we begin with the base case \(1\)
+
+      \begin{align}
+        S(1) = T(2^1) = 2 & = 2^1\,lg\,2^1 \\
+        & = 2(1) \\
+        & = 2
+      \end{align}
+
+      Now, if \(S(k) = T(2^k) = 2^k\,lg\,2^k\), then:
+
+      \begin{align}
+        S(k+1) = T(2^{k+1}) &= 2^{k+1} + 2T\left(\frac{2^{k+1}}{2}\right) \\
+        & = 2^{k+1} + 2T(2^k) \\
+        & = 2^{k+1} + 2(2^k\,lg\,2^k) \\
+        & = 2^{k+1} + 2^{k+1}\,lg\,2^{k} \\
+        & = (1 + lg2^k)(2^{k+1}) \\
+        & = (lg2 + lg2^k)(2^{k+1}) \\
+        & =(2^{k+1})(lg2^{k+1}) \\
+      \end{align}
+
+      Then \(T(n) = nlgn\)</br>
+      <strong>Q.E.D</strong>
+    </p>
+  </body>
+</html>

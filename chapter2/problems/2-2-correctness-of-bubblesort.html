@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Problem 2-2</title>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+
+  <body>
+    <h1>Problem 2-2 - Correctness of bubblesort</h1>
+    <p>
+      Bubblesort is a popular, but inefficient, sorting algorithm. It works by repeatedly swapping adjacent elements that are out of order.
+      <pre>
+        for i = 1 to A.length - 1
+            for j = A.length downto i + 1
+                if A[j] < A[j-1]
+                  exchange A[j] with A[j-1]
+      </pre>
+    </p>
+    <ol type="a">
+      <li><strong>Let \(A'\) denote the output of \(\mathrm{BUBBLESORT}(A)\). To prove that \(\mathrm{BUBBLESORT}\) is correct, we need to prove that it terminates and that:
+          $$
+          A'[1] \leq A'[2] \leq ... \leq A'[n]
+          $$
+          where \(n = A.length\). In order to show that \(\mathrm{BUBBLESORT}\) actually sorts, what else do we need to prove?
+        </strong>
+        <p>
+          We need to prove that, before the <strong>for</strong> loop on line 2, the subarray \(A[1..i]\) is sorted.
+        </p>
+      </li>
+      <li><strong>State precisely a loop invariant for the <strong>for</strong> loop in lines 2-4, and prove that this loop invariant holds. Your proof should use the structure of the loop invariant proof presented in this chapter.</strong>
+        <p>
+          <p><strong>Initialization:</strong> Before the start of the loop, we have the subarray: \(A[i+1..A.length]\). We don't make any assumptions about the subarray at this point, only the fact that we have such a subarray.
+          </p>
+          <p><strong>Maintenance:</strong> With each iteration, we begin with \(j = A.length\) and go down to \(i + 1\). Next, we compare \(A[j]\) and \(A[j-1]\), if \(A[j]\) is lower than \(A[j-1]\), then we exchange the values, so the value at \(A[j]\) becomes the value of \(A[j-1]\). The subarray is still of length \(A[i+1..A.length]\), with no assumptions about it and \(j = j - 1\).
+          </p>
+          <p><strong>Termination:</strong> The loop terminates when \(j = i+1\). At this point the value at \(A[j]\) will be the lowest in \(A[j..A.length]\). This can be verified if we observe that, per the maintenance term, we exchange \(A[j]\) with \(A[j-1]\), then on the following iteration, \(j = j - 1\) we will be using the same value as in the previous iteration. This must mean that, at the end of the loop, when \(j = i + 1\), \(A[i]\) will be the lowest element in the \(A[i..A.length]\) subarray and \(A[i] \leq A[j]\).
+          </p>
+        </p>
+      </li>
+      <li>
+        <strong>
+            Using the termination condition of the loop invariant proved in part (b), state a loop invariant for the <strong>for</strong> loop in lines 1-4 that will allow you to prove inequality (2.3). Your proof should use the structure of the loop invariant proof presented in this chapter.
+        </strong>
+        <p>
+          <p>
+            <strong>Initialization:</strong> Before the start of the loop, we have the subarray \(A[1..i]\) in sorted order. On the first iteration, \(i = 1\), in this case \(A[1]\) is sorted because it consist of a single element.
+          </p>
+          <p>
+            <strong>Maintenance:</strong> With each iteration, we begin the procedure described in (b) which will yield the subarray \(A[i..A.length\) where \(A[i] \leq A[i+1]\), and since \(A[1..i]\) is sorted, this means that \(A[1..i+1]\) will be sorted, so the invariant is preserved.
+          </p>
+          <p>
+            <strong>Termination:</strong> The loop ends when \(i = A.length - 1\), since we know that at the end of each iteration, \(A[1..i+1]\) is sorted, then at the end \(A[1..A.length]\) will be sorted.
+          </p>
+      </li>
+      <li>
+        <strong>
+          What is the worst-case running time of bubblesort? How does it compare to the running time of insertion sort?
+        </strong>
+        <p>
+          The running time of bubblesort is \(\Theta(n^2)\) for both, best-case and worst-case. Insertion sort and bubblesort have the same worst-case running time, however, the best-case of Insertion sort is \(\Theta(n)\).
+        </p>
+    </ol>
+  </body>
+</html>

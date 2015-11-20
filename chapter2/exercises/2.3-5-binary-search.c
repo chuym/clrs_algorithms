@@ -4,6 +4,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * Argument that binary search complexity is O(lgn) on worse case.
+ *
+ * Worst case scenario happens when the thing we are looking for is not in
+ * our list, and also with every iteration we half the size of our array, then:
+ *
+ * T(n) = 1 , if n = 1,
+ * T(n) = T(n/2) + 1 , if n = 2^k and k > 1
+ *
+ * We assume that -> F(k) = T(2^k) = lg2^k
+ * Then;
+ * F(k+1) = T(2^k+1) = T((2^k+1)/2) + 1
+ * F(k+1) = T(2^k+1) = T(2^k) + 1
+ * F(k+1) = T(2^k+1) = lg2^k + 1
+ * F(k+1) = T(2^k+1) = lg2^k + lg 2
+ * F(k+1) = T(2^k+1) = lg2^k+1
+ *
+ * We showed that T(n) = O(lgn) on worst case scenario.
+ */
 int * search(int needle, int *list, size_t size)
 {
   int *result = NULL;

@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Problem 2-1</title>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+
+  <body>
+    <h1>Problem 2-1 - Insertion sort on small arrays in merge sort</h1>
+    <p>
+      Although merge sort runs in \(\Theta(n\,lg\,n)\) worst-case time and insertion sort runs in \(\Theta(n^2)\) worst-case time, the constant factors in insertion sort can make it faster in practice for small problem sizes on many machines. Thus, it makes sense to <strong><i>coarsen</i></strong> the leaves of the recursion by using insertion sort within merge sort when subproblems become sufficiently small. Consider a modification to merge sort in which \(n/k\) sublists of length \(k\) are sorted using insertion sort and then merged using the standard merging mechanism, where \(k\) is a value to be determined
+    </p>
+    <ol type="a">
+      <li><strong>Show that insertion sort can sort the \(n/k\) sublists, each of length \(k\), in \(\Theta(nk)\) worst-case time.</strong>
+        <p>
+          We know that the worst-case time for insertion sort is \(\Theta(n^2)\) then for lists of length \(k\), then the worst-case time is \(\Theta(k^2\), we have \(n/k\) sublists of length \(k\), then in total time it is:
+          $$
+          \Theta\left(\frac{n}{k} \cdot k^2\right) \\
+          \Theta\left(\frac{nk^2}{k}\right) \\
+          \Theta(nk)
+          $$
+        </p>
+      </li>
+      <li><strong>Show how to merge the sublists in \(\Theta(n\,lg\,(n/k))\) worst-case time</strong>
+        <p>
+          The recursion tree depth will be at most \(lg\,(n/k)\), because when the sublist is length \(k\), the insertion sort routine will be used instead, and the lists won't be broken down any further, thus the merge procedure will take \(\Theta(n\,lg\,(n/k))\)
+        </p>
+      </li>
+      <li><strong>Given that the modified algorithm runs in \(\Theta(nk + n\,lg\,(n/k))\) worst-case time, what is the largest value of \(k\) as a function of \(n\) for which the modified algorithm has the same running time as a standard merge sort, in terms of \(\Theta\)-notation?</strong>
+        <p>
+          We have to find the point when both algorithms are the same:
+          $$
+          \Theta(nk + n\,lg\,(n/k)) = \Theta(nlgn)
+          $$
+          We discard the lower terms of the modified algorithm, so we end up with:
+          $$
+          \Theta(nk) = \Theta(nlgn)
+          $$
+          Then, we have to prove that \(k = lgn\), if we substitute in the modified algorithm running time:
+          $$
+          \begin{align}
+              T(n) &= \Theta(nk + n\,lg\,(n/k)) \\
+              & = \Theta(n\,lg\,n + n\,lg\,\left(\frac{n}{lg\,n}\right)) \\
+              & = \Theta(n\,lg\,n + n(lg\,n - lg\,lg\,n)) \\
+              & = \Theta(n\,lg\,n + n\,lg\,n - n\,lg\,lg\,n) \\
+              & = \Theta(2n\,lg\,n + n\,lg\,lg\,n) \\
+          \end{align}
+          $$
+          We then discard the lower terms \(n\,lg\,lg\,n\) and the constant \(2\) and we end with: \(\Theta(n\,lg\,n)\).
+        </p>
+      </li>
+      <li><strong>How should we choose \(k\) in practice?</strong>
+        <p>
+          Calculating the exact time it takes for the constant operations in both, the merge sort and the insertion sort procedures is too complicated, and worse, it varies between machines. The simplest way is to benchmark for different amounts of \(k\), and find the optimal amount with experimentation.
+        </p>
+      </li>
+    </ol>
+  </body>
+</html>
+
+    
+      

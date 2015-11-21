@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Problem 2-3</title>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+
+  <body>
+    <h1>Problem 2-3 - Correctness of Horner's rule</h1>
+    <p>
+      The following code fragment implements Horner's rule for evaluating a polynomial
+      $$
+      \begin{align}
+      P(x) &= \sum_{k=0}^n a_kx^k \\
+      &= a_0 + x(a_1 + x(a_2 + \ldots + x(a_{n-1} + xa_n) \ldots))
+      \end{align}
+      $$
+      given the coefficients \(a_0, a_1, \ldots , a_n\) and a value for \(x\):
+      <pre class="tex2jax_process">
+        y = 0
+        for i = n downto 0
+            y = \(a_i + x \cdot y\)
+      </pre>
+    </p>
+    <ol type="a">
+      <li><strong>In terms of \(\Theta\)-notation, what is the running time of this code framgnet for Horner's rule?</strong>
+        <p>
+          The running time is \(\Theta(n)\)
+        </p>
+      </li>
+      <li><strong>Write pseudocode to implement the naive polynomial-evaluation algorithm that computes each term of the polynomial from scratch. What is the running time of this algorithm? How does it compare to Horner's rule?</strong>
+        <p>
+          <pre class="tex2jax_process">
+            sum = 0
+            for i = n downto 0
+                y = 1
+                    for j = n downto 1
+                        y = x * y
+                sum = sum + \(a_0 \cdot y\)
+
+          </pre>
+          The running time of this algorithm is \(\Theta(n^2)\) it has a greater order of growth than Horner's rule. This is mainly because we are repeatedly calculating powers of \(x\).
+        </p>
+      </li>
+      <li>Consider the following loop invariant: </br>
+        At the start of each iteration of the <strong>for</strong> loop of lines 2-3,
+        $$
+        y = \sum_{k=0}^{n-(i+1)} a_{k+i+1}x^k
+        $$
+        Interpret a summation with no terms as equaling 0. Following the structure of the loop invariant proof presented in this chapter, use this loop invariant to show that, at termination, \(y = \sum_{k=0}^n a_kx^k\).
+        <p>
+          <ul>
+            <li><strong>Initialization:</strong> At the beginning of the iteration, the sum is 0 because the summation has no terms.
+            </li>
+            <li><strong>Maintenance:</strong> Before each iteration, we have:
+              $$
+              y = \sum_{k=0}^{n-(i+1)} a_{k+i+1}x^k
+              $$
+              Then, we calculate the next term in the series and add it to the summation:
+              $$
+              \begin{align}
+                y &= a_i + x \sum_{k=0}^{n-(i+1)} a_{k+i+1}x^k \\
+                &= a_i + \sum_{k=0}^{n-(i+1)} a_{k+i+1}x^{k+1} \\
+                &= \sum_{k=-1}^{n-(i+1)} a_{k+i+1}x^{k+1} \\
+              \end{align}
+              $$
+              Next, we define \(k' = k + 1\), to denote the fact we have summated the term, then we have:
+              $$
+              y = \sum_{k'=0}^{n-(i+1)} a_{k'+i}x^{k'}
+              $$
+              Next, we decrement i, as per the <strong>for</strong> \(i' = i - 1\), then we have:
+              $$
+              y = \sum_{k'=0}^{n-(i'+1)}a_{k'+i'+1}x^{k'}
+              $$
+
+              Which let us hold the invariant for the next iteration of the loop
+            </li>
+            <li><strong>Termination:</strong> The <strong>for</strong> loop ends when \(i = -1\), if we substitute the values:
+              $$
+              \begin{align}
+                y &= \sum_{k=0}^{n-(i+1)} a_{k+i+1}x^k \\
+                &= \sum_{k=0}^{n-(-1+1)} a_{k-1+1}x^k \\
+                &= \sum_{k=0}^n a_kx^k
+              \end{align}
+              $$
+            </li>
+          </ul>
+        </p>
+      </li>
+      <li>Conclude by arguing that the given code fragment correctly evaluates a poly-nomial characterized by the coefficients \(a_0, a_1, \ldots , a_n\).
+        <p>
+          The code fragment evaluates: \(a_i + x \cdot y \), where \(y\) is the sum of the terms evaluated down from \(n\) to \(i + 1\). Which is equivalent to the proof shown above. We know that the loop terminates when \(i = -1 \), at which point we'll have the sum of all terms in our polynomial: \(\sum_{k=0}^n a_kx^k\)
+        </p>
+      </li>
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 3.1</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercises 3.1</h1>
+    <ol type="1">
+      <li>
+      Let $f(n)$ and $g(n)$ be asymptotically nonnegative functions. Using the basic definition of $\Theta$-notation, prove that $max(f(n), g(n)) = \Theta(f(n) + g(n))$
+      <p>
+        $$
+        \Theta(f(n) + g(n)) = \{ max(f(n), g(n)) \mid \exists n_0 \in \Bbb{N}, \exists c_1 \in \Bbb{N}, \exists c_2 \in \Bbb{N}, 0 \leq c_1 \cdot (f(n) + g(n)) \leq max(f(n), g(n)) \leq c_2 \cdot (f(n) + g(n)), n \geq n_0 \}
+        $$
+        <br>
+        For the right-hand inequality $max(f(n), g(n)) \leq c_2(f(n) + g(n))$, it holds for $c_2 = 1$
+        <br>
+        For the left-hand inequality
+        $$
+        \begin{align}
+        c_1(f(n) + g(n)) &\leq max(f(n), g(n)) \\
+        f(n) &\leq max(f(n), g(n)) \\
+        g(n) &\leq max(f(n), g(n)) \\
+        f(n) + g(n) &\leq 2(max(f(n), g(n))) \\
+        \frac{1}{2}\left(f(n) + g(n)\right) &\leq max(f(n), g(n)) \\
+        \end{align}
+        $$
+        so $c_2 = \frac{1}{2}$ holds the left-hand inequality
+      </p>
+      </li>
+      <li>
+        Show that for any real constants $a$ and $b$, where $b \gt 0$, <br>
+        $(n + a)^b = \Theta(n^b)$
+        <br>
+        If a is a positive number, then any polinomial $p(n) = \sum_{i=0}^b a_in^i$ is $p(n) = \Theta(n^b)$ by virtue of:
+        $$
+        \sum_{i=0}^b a_in^i = a_0n^b + a_1n^{b-1} + \ldots + a_b
+        $$
+        The higher-order terms will dominate the lower-order terms for a sufficiently large n, then we can assume that $(n + a)^b \in \Theta(n^b)$
+      </li>
+      <li>
+        Explain why the statement, "The running time of algorithm $A$ is at least $O(n^2)$", is meaningless.
+        <p>
+          $O$-notation gives us the upper-bound of a given function. Saying that an algorithm running time is at <i>least</i> $O(n^2)$ tell us nothing about the running time of the algorithm, because $O(n^2)$ is an upper bound, not lower bound, if it used $\Omega(n^2)$ it would have made sense.
+        </p>
+      </li>
+      <li>
+        Is $2^{n+1} = O(2^n)$? Is $2^{2^n} = O(2^n)$?
+        <p>
+          For the first one to hold, then:
+          $$
+          O(2^n) = \{ 2^{n+1} \mid \exists c \in \Bbb{N}, \exists n_0 \in \Bbb{N}, n \gt n_0, 0 \leq 2^{n+1} \leq c \cdot 2^n \}
+          $$
+          We have to find a constant $c$ and $n_0$ for the inequality to hold:
+          $$
+          2^{n+1} \leq c \cdot 2^n \\
+          2 \cdot 2^n \leq c \cdot 2^n
+          $$
+          Then $c = 2$ and $n_0 = 0$ satisfies the inequality.
+          <br>
+          For the second one to hold:
+          $$
+          O(2^n) = \{ 2^{2^n} \mid \exists c \in \Bbb {N}, \exists n_0 \in \Bbb{N}, n \gt n_0, 0 \leq 2^{2^n} \leq c \cdot 2^n \}
+          $$
+          There's no constant that can satisfy the inequality $2^{2^n} \leq c \cdot 2^n$ for different $n$.
+      </li>
+      <li>
+        Prove Theorem 3.1
+        $$
+        f(n) \in \Theta(g(n)) \implies f(n) \in O(g(n)) \land f(n) \in \Omega(g(n))
+        $$
+        By definition, the different asyimptotic notations are defined as:
+        $$
+        \begin{align}
+            \Theta(g(n)) &= \{ f(n) \mid \exists n_0 \in \Bbb{N}, \exists c_1 \in \Bbb{N}, \exists c_2 \in \Bbb{N}, 0 \leq c_1g(n) \leq f(n) \leq c_2g(n), n \geq n_0 \} \\
+            O(g(n)) &= \{ f(n) \mid \exists n_0 \in \Bbb{N}, \exists c \in \Bbb{N}, 0 \leq f(n) \leq cg(n), n \geq n_0 \} \\
+            \Omega(g(n)) &= \{ f(n) \mid \exists n_0 \in \Bbb{N}, \exists c \in \Bbb{N}, 0 \leq cg(n) \leq f(n), n \geq n_0 \}
+        \end{align}
+        $$
+        The $O$-notation defines the upper bound, which is the right-hand inequality of $\Theta$-notation, and $\Omega$-notation defines the lower bound, which is the left-hand inequality of the $\Theta$-notation. Then:
+        $$
+        \Theta(g(n)) \implies O(g(n)) \land \Omega(g(n))
+        $$
+        Thus, we can say that $\Theta(g(n)) = O(g(n)) \cap \Omega(g(n))$
+      </li>
+      <li>
+        Prove that the running time of an algorithm is $\Theta(g(n))$ if and only if its worst-case running time is $O(g(n))$ and its best-case running time is $\Omega(g(n))$.
+        <p>
+          Let $T_o$ be the worst case running time function of our algorithm and $T_\omega$ be our best-case running time function of our algorithm, the resulting inequalities in $O$-notation and $\Omega$-notation are:
+          $$
+          O(g(n)) = \{ T_o(n) \mid \exists n_0 \in \Bbb{N}, \exists c \in \Bbb{N}, 0 \leq T_o(n) \leq cg(n), n \geq n_0 \} \\
+          \Omega(g(n)) = \{ T_\omega(n) \mid \exists n_0 \in \Bbb{N}, \exists c \in \Bbb{N}, 0 \leq cg(n) \leq T_\omega(n), n \geq n_0 \}
+          $$
+          Then, both sets $O(g(n)) \cap \Omega(g(n))$ are:
+          $$
+          O(g(n)) \cap \Omega(g(n)) = \{ T_\theta(n) \mid \exists n_0 \in \Bbb{N}, \exists c_o \in \Bbb{N}, \exists c_\omega \in \Bbb{N}, 0 \leq c_{\omega}g(n) \leq T_\omega(n) \leq T_o(n) \leq c_og(n), n \geq n_0 \}
+          $$
+          If we observe the set definition, we can conclude that it is equivalent to the $\Theta$ set definition.
+        </p>
+      </li>
+      <li>
+        Prove that $o(g(n)) \cap \omega(g(n))$ is the empty set.
+        <p>
+          $o$ and $\omega$ are defined as:
+          $$
+          \begin{align}
+          o(g(n)) &= \{\,f(n) \, \mid \, c \in \Bbb{N}, \exists n_0 \in \Bbb{N}, n \geq n_0, 0 \leq f(n) \lt cg(n) \,\} \\
+          \omega(g(n)) &= \{\,f(n) \, \mid \, c \in \Bbb{N}, \exists n_0 \in \Bbb{N}, n \geq n_0, 0 \leq c(g(n)) \lt f(n) \,\}
+          \end{align}
+          $$
+          Then, the intersection of both sets is defined as:
+          $$
+          o(g(n)) \cap \omega(g(n)) = \{\,f(n) \, \mid \, c \in \Bbb{N}, \exists n_0 \in \Bbb{N}, n \geq n_0, 0 \leq f(n) \lt c(g(n)) \lt f(n) \,\}
+          $$
+          A value can't be both greater than and lower than other value at the same time: $f(n) \lt c(g(n)) \lt f(n)$, so clearly:
+          $$
+          o(g(n)) \cap \omega(g(n)) = \varnothing
+          $$
+      </li>
+      <li>
+        We can extend our notation to the case of two parameters $n$ and $m$ that can go to infinity independently at different rates. For a given function $g(n, m)$, we denote by $O(g(n, m))$ the set of functions:
+        $$
+        O(g(n, m)) = \{ f(n, m) \mid \exists n_0 \in \Bbb{N}, \exists c \in \Bbb{N}, \exists m_0 \in \Bbb{N}, 0 \leq f(n, m) \leq cg(n, m), n \geq n_0 \lor m \geq m_0 \}
+        $$
+        Give corresponding definitions for $\Omega(g(n, m))$ and $\Theta(g(n, m))$.
+        <p>
+          $$
+          \begin{align}
+            \Omega(g(n, m)) &= \{ f(n, m) \mid \exists n_0 \in \Bbb{N}, \exists c \in \Bbb{N}, \exists m_0 \in \Bbb{N}, 0 \leq cg(n, m) \leq f(n, m),n \geq n_0 \lor m \geq m_0 \} \\
+            \Theta(g(n, m)) &= \{ f(n, m) \mid \exists n_0 \in \Bbb{N}, \exists c_1 \in \Bbb{N}, \exists c_2 \in \Bbb{N}, \exists m_0 \in \Bbb{N}, 0 \leq c_1g(n, m) \leq f(n, m) \leq c_2g(n, m) ,n \geq n_0 \lor m \geq m_0 \} \\
+          \end{align}
+          $$
+        </p>
+      </li>
+    </ol>
+  </body>
+</html>

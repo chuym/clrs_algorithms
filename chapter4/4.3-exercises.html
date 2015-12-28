@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 4.3</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercises 4.3</h1>
+    <ol type="1">
+      <li>
+        Show that the solution of $T(n) = T(n - 1) + n$ is $O(n^2)$.
+        <p>
+          We have to prove that $T(n) \leq cn^2$ for some $c > 0$
+          \begin{align}
+            T(n) &\leq c(n-1)^2 + n \\
+            T(n) &\leq cn^2 - 2cn + c + n \\
+          \end{align}
+          If $c = 1$, then
+          \begin{align}
+            cn^2 - 2cn + c + n &\leq cn^2 \\
+            n^2 - 2n + 1 + n &\leq n^2 \\
+            n^2 - n + 1 &\leq n^2
+          \end{align}
+          This holds as long as $n \geq 1$, then: $T(n) = O(n^2)$
+        </p>
+      </li>
+
+      <li>
+        Show that the solution of $T(n) = T(\lceil n/2\rceil) + 1$ is $O(\text{lg }n)$
+        <p>
+          We have to prove that $T(n) \leq c\text{ lg }n$ for some $c > 0$
+          \begin{align}
+          T(n) &\leq c\text{ lg }(\lceil{n/2}\rceil) + 1 \\
+          T(n) &\leq c\text{ lg }n - c\text{ lg } 2 + 1 \\
+          T(n) &\leq c\text{ lg }n - c + 1 \\
+          T(n) &\leq c\text{ lg } n \\
+          T(n) &= O(\text{lg }n)
+          \end{align}
+      </li>
+
+      <li>
+        We saw that the solution of $T(n) = 2T(\lfloor n/2\rfloor) + n$ is $O(n\text{ lg }n)$. Show that the solution of this recurrence is also $\Omega(n\text{ lg }n)$. Conclude that the solution is $\Theta(n\text{ lg }n)$.
+      </li>
+
+      <li>
+        Show that by making a different inductive hypothesis, we can overcome the difficulty with the boundary condition $T(1) = 1$ for recurrence (4.19) without adjusting the boundary conditions for the inductive proof.
+      </li>
+
+      <li>
+        Show that $\Theta(n\text{ lg }n)$ is the solution to the "exact" recurrence (4.3) for merge sort.
+      </li>
+
+      <li>
+        Show that the solution to $T(n) = 2T(\lfloor n/2\rfloor + 17) + n$ is $O(n\text{ lg }n)$.
+      </li>
+    </ol>
+  </body>
+</html>

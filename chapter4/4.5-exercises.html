@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 4.5</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercises 4.5</h1>
+    <ol type="1">
+      <li>
+        Use the mater method to give tight asymptotic bounds for the following recurrences:
+        <ol type="a">
+          <li>
+            $T(n) = 2T(n/4) + 1$
+            <p>
+              We have that $a = 2$, $b = 4$, $f(n) = 1$, $n^{\text{log}_ba} = n^{\text{log}_42} = n^{0.5} = \Theta(\sqrt{n})$.<br>
+              $f(n) = O(1) = O(n^{0.5 - \epsilon}) = O(n^{0.5 - 0.5}) = O(n^0) = O(1)$ where $\epsilon = 0.5$, then we use case 1.
+              \begin{align}
+                T(n) &= \Theta(n^{\text{log}_ba}) \\
+                T(n) &= \Theta(n^{\text{log}_42}) \\
+                T(n) &= \Theta(n^0.5) \\
+                T(n) &= \Theta(\sqrt{n})
+              \end{align}
+            </p>
+          </li>
+          <li>
+            $T(n) = 2T(n/4) + \sqrt{n}$
+            <p>
+              We have that $a = 2$, $b = 4$, $f(n) = \sqrt{n}$, $n^{\text{log}_ba} = n^{\text{log}_42} = n^{0.5} = \Theta(\sqrt{n})$.<br>
+              $f(n) = \Theta(\sqrt{n})$, then we use case 2.
+              \begin{align}
+                T(n) &= \Theta(n^{\text{log}_ba}\text{lg }n) \\
+                T(n) &= \Theta(n^{\text{log}_42}\text{lg }n) \\
+                T(n) &= \Theta(n^0.5\text{lg }n) \\
+                T(n) &= \Theta(\sqrt{n}\text{lg }n)
+              \end{align}
+            </p>
+          </li>
+
+          <li>
+            $T(n) = 2T(n/4) + n$
+            <p>
+              We have that $a = 2$, $b = 4$, $f(n) = n$, $n^{\text{log}_ba} = n^{\text{log}_42} = n^{0.5} = \Theta(\sqrt{n})$.<br>
+              $f(n) = \Omega(n) = \Omega(n^{0.5 + \epsilon}) = \Omega(n^{0.5 + 0.5}) = \Omega(n^1) = \Omega(n)$ where $\epsilon = 0.5$, then we use case 3.
+
+              \begin{align}
+                T(n) &= \Theta(n)
+              \end{align}
+            </p>
+          </li>
+          <li>
+            $T(n) = 2T(n/4) + n^2$
+            <p>
+              We have that $a = 2$, $b = 4$, $f(n) = n^2$, $n^{\text{log}_ba} = n^{\text{log}_42} = n^{0.5} = \Theta(\sqrt{n})$.<br>
+              $f(n) = \Theta(n^2) = \Omega(n^{0.5 + \epsilon}) = \Omega(n^{0.5 + 1.5}) = \Omega(n^2)$ where $\epsilon = 1.5$, then we use case 3.
+
+              \begin{align}
+                T(n) &= \Theta(n^2)
+              \end{align}
+            </p>
+          </li>
+        </ol>
+      </li>
+      <li>
+        Professor Caesar wishes to develop a matrix-multiplication algorithm that is asymptotically faster than Strassen's algorithm. His algorithm will use the divide-and-conquer method, dividing each matrix into pieces of size $n/4 \times n/4$, and the divide and combine steps together will take $\Theta(n^2)$ time. He needs to determine how many subproblems his algorithm has to create in order to beat Strassen's algorithm. If his algorithm creates $a$ subproblems, then the recurrence for the running time $T(n)$ becomes $T(n) = aT(n/4) + \Theta(n^2)$. What is the largest integer value of $a$ for which Professor Caesar's algorithm would be asymptotically faster than Strassen's algorithm?
+        <p>
+          Strassen's algorithm runs in $T(n) = \Theta(n^\text{lg }7)$ we need to find an $a$ such that $n^{\text{log}_4a} \lt n^{\text{lg }7}$
+          \begin{align}
+            n^{\text{log}_4a} = n^{\text{lg }7} \\
+            n^{\text{lg }\sqrt{a}} = n^{\text{lg }7} \\
+            \sqrt{a} = 7 \\
+            a = 7^2 \\
+            a = 49
+          \end{align}
+          The largest number of subproblems must is 48 before Strassen's algorithm beats Professor Caesar's algorithm.
+        </p>
+      </li>
+      <li>
+        Use the master method to show that the solution to the binary-search recurrence $T(n) = T(n/2) + \Theta(1)$ is $T(n) = \Theta(\text{lg }n)$
+        <p>
+          We have that $a = 1$, $b = 2$, $f(n) = \Theta(1)$, $n^{\text{log}_ba} = n^{\text{log}_21} = n^0 = \Theta(1)$.<br>
+          $f(n) = \Theta(1)$, hence case 2 applies
+          \begin{align}
+            T(n) &= \Theta(n^{\text{log}_ba}\text{ lg }n) \\
+            T(n) &= \Theta(n^{\text{lg }1}\text{ lg }n) \\
+            T(n) &= \Theta(\text{lg }n) \\
+          \end{align}
+      </li>
+      <li>
+        Can the master method be applied to the recurrence $T(n) = 4T(n/2) + n^2\text{ lg }n$? Why or why not? Give an asymptotic upper bound for this recurrence.
+        We have that $a = 4$, $b = 2$, $f(n) = n^2\text{ lg }n$, $n^{\text{log}_ba} = n^{\text{log}_24} = n^2 = \Theta(n^2)$<br>
+        $f(n) = \Theta(n^2\text{ lg }n)$, we have that $f(n) \gt n^{\text{log}_ba}$, let's see if it satisfies the regularity condition.<br>
+        $f(n)/n^2 = \frac{n^2\text{ lg }n}{n^2} = \text{lg }n$<br>
+        Since $\text{lg }n \lt n^\epsilon$ for any $\epsilon > 0$, then the master method can't be used.<br>
+        If we draw a recursion tree, we get that at level $i$ we have $4^i$ subproblems, which are reduced by a factor of $2$, then we have that at level $i$, the subproblem can be expressed as:
+        \begin{align}
+            S(i) &= c\left( \left( \frac{n}{2^i} \right)^2 \text{ lg } \frac{n}{2^i} \right) \\
+            S(i) &= 4^ic\left( \left( \frac{n}{2^i} \right)^2 \text{ lg } \frac{n}{2^i} \right) \\
+            S(i) &= 4^ic\left( \left( \frac{n}{2^i} \right)^2 \text{ lg } n - \left( \frac{n}{2^i} \right) \text{ lg } 2^i \right) \\
+            S(i) &= \frac{4^i}{4^i}c\left( n^2 \text{ lg } n - n^2 \text{ lg } 2^i \right) \\
+            S(i) &= cn^2 \text{ lg } n - cn^2 \text{ lg } 2^i \\
+        \end{align}
+        Then $T(n)$
+        \begin{align}
+        T(n) = cn^2 \text { lg } n +
+        \end{align}
+        
+       
+      </li>
+    </ol>
+  </body>
+</html>

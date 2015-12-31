@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 5.2</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$', '$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  </head>
+  <body>
+    <h1>Exercises 5.2</h1>
+    <h2>
+      In HIRE-ASSISTANT, assuming that the candidates are presented in random order, what is the probability that you hire exactly twice?
+    </h2>
+    <p>
+      We know that the chance of hiring once is: $Pr\{A\} = \frac{1}{n}$ hiring twice means that we have to hire once in the subset $1 \leq i \lt n$, then for a particular $i$, the chance to hire once is $Pr\{B_i\} = \frac{1}{i}$, then the probability of both happening is:
+
+      \begin{align}
+      Pr\{A \cap B_i\} &= Pr\{A\} \cdot Pr\{B_i\} \\
+      Pr\{A \cap B_i\} &= \frac{1}{n} \cdot \frac{1}{i} \\
+      \end{align}
+
+      That is the probability of hiring twice for a particular event $B_i$ we want the probability for all $B$, then we have:
+      \begin{align}
+      Pr\{B\} &= \sum_{i=1}^{n-1} Pr\{B_i\} \\
+      Pr\{B\} &= \sum_{i=1}^{n-1} \frac{1}{i} \\
+      \end{align}
+
+      Then the probability of hiring twice, for any $B$ is:
+      \begin{align}
+      Pr\{A \cap B\} &= Pr\{A\} \cdot Pr\{B\} \\
+      Pr\{A \cap B\} &= \frac{1}{n} \sum_{i=1}^{n-1} \frac{1}{i}
+      \end{align}
+    </p>
+  </body>
+</html>

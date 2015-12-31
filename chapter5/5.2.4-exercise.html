@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 5.2</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$', '$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  </head>
+  <body>
+    <h1>Exercise 5.2.4</h1>
+    <h2>
+      Use indicator random variables to solve the followng problem, which is known as the <strong><i>hat-check problem</i></strong>. Each of $n$ customers gives a hat to a hat-check person at a restaurant. The hat-check person gives the hats back to the customers in a random order. What is the expected number of customers who get back their own hat?
+    </h2>
+    <p>
+      Let $H$ denote the event of getting the right hat and $W$ the event of getting the wrong hat. The probability of getting the hat is $Pr\{H\} = 1/n$, and $Pr\{W\} = (n-1) / n$. Then $X_H$ is the random variable associated with the event of getting the correct hat from the pile, denoted as follows
+      $$
+      X_H
+      \begin{cases}
+      1 \text{  if $H$ occurs} \\
+      0 \text{  if $W$ occurs} \\
+      \end{cases}
+      $$
+      The expected value of X_H is given by:
+      $$
+      \begin{align}
+      E[X_H] &= 1 \cdot Pr{H} + 0 \cdot Pr\{W\} \\
+      E[X_H] &= 1/n \\
+      \end{align}
+      $$
+      The expected number of customers receiving their hat back is defined by:
+      $$
+      \begin{align}
+        E[X] &= E\left[\sum_{i=1}^{n} X_i \right] \\
+        E[X] &= \sum_{i=1}^{n} E[X_i] \\
+        E[X] &= \sum_{i=1}^{n} \frac{1}{n} \\
+        E[X] &= n \cdot \frac{1}{n} \\
+        E[X] &= 1
+      \end{align}
+      $$
+    </p>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 5.3</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercise 5.3.3</h1>
+    <h4>
+      Suppose that instead of swapping element $A[i]$ with a random element from the subarray $A[i..n]$, we swapped it with a random element from anywhere in the array:
+    </h4>
+    <pre>
+      n = A.length
+      for i = 1 to n
+        swap A[i] with A[RANDOM(1, n)]
+    </pre>
+    Does this code produce a uniform random permutation? Why or why not?
+    <p>
+      We know that an the array $A[n]$ has $n!$ possible permutations, in order to produce an uniform permutation, the procedure must generate $n!$ permutations (or a multiple of it) with all possibilities equally likely. This procedure can generate $n^n$ permutations, which is far higher than $n!$, except when $n = 1$, where they are the same - but generating permutations for an array of length 1 doesn't make sense anyway.
+    </p>
+  </body>
+</html>

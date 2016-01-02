@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 5.2</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$', '$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  </head>
+  <body>
+    <h1>Exercise 5.2.5</h1>
+    <h2>
+      Let $A[1..n]$ be an array of $n$ distincs numbers. If $i \lt j$ and $A[i] \gt A[j]$, then the pair $(i, j)$ is called an <strong><i>inversion</i></strong> of $A$. Suppose that the elements of $A$ form a uniform random permutation of $\langle 1,2,..,n\rangle$. Use indicator random variables to compute the expected number of inversions.
+    </h2>
+    <p>
+      Let $m = \binom{n}{2}$ be the set of pairs $(i, j)$.
+      $$
+      Pr\{V_i\} = \frac{n - A[i]}{m}
+      $$
+      The random variable $X_i$ denotes the result of the event of $V_i$ as follows:
+      $$
+      X_ij
+      \begin{cases}
+      1, \text{   if $V_ij$} \\
+      0, \text{   otherwise}
+      \end{cases}
+      $$
+      And the expected value:
+      $$
+      E[X_ij] = 1 \cdot Pr\{V_i\} \\
+      E[X_ij] = \frac{n - A[i]}{m} \\
+      $$
+
+      The expected number of inversions in $A[1..n]$ is:
+      $$
+      \begin{align}
+        E[X] &= E\left[\sum_{i=1}^{m} X_i \right] \\
+        E[X] &= \sum_{i=1}^{m} E[X_i] \\
+        E[X] &= \sum_{i=1}^{m} \frac{n - A[i]}{m}
+      \end{align}
+      $$
+      Notice here that $\frac{n - A[i]}{m}$ in the summation can be replaced by $\frac{i}{m}$, since all values happens at least one and the order of summation doesn't matter, we can safely replace it, then we get:
+      $$
+      \begin{align}
+        E[X] &= \sum_{i=1}^{m} \frac{n - A[i]}{m} \\
+        E[X] &= \sum_{i=1}^{m} \frac{i}{m} \cdot i \\
+        E[X] &= \frac{1}{m} \cdot \frac{m(m+1)}{2} \\
+        E[X] &= \frac{m(m+1)}{2m} \\
+        E[X] &= \frac{m+1}{2} \\
+      \end{align}
+      $$
+    </p>
+  </body>
+</html>

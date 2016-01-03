@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 5.3</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercise 5.3.5</h1>
+    <h4>
+    Prove that in the array $P$ in procedure PERMUTE-BY-SORTING, the probability that all elements are unique is at least $1 - 1/n$
+    </h4>
+    PERMUTE-BY-SORTING generates a new array $P$ of size $n$ and populates its values with a random value in the range $\langle 1, 2, .. n^3 \rangle$, then the probability of picking a unique value at $P[j]$ is $Pr\{j\} = 1 - \frac{j-1}{n^3}$
+    <br>
+    Then, to calculate the probability for every element to be different in $\langle 1, 2 .. n \rangle$:
+    $$
+    \begin{align}
+    Pr\{1 \cap 2 \cap \text{ ... } \cap n\} &= Pr\{1\} \cdot Pr\{2\} \cdot \text{ ... } \cdot Pr\{n\} \\
+    Pr\{1 \cap 2 \cap \text{ ... } \cap n\} &= 1 \cdot \left(1 - \frac{1}{n^3} \right) \cdot \left(1 - \frac{2}{n^3} \right) \cdot \text{ ... } \cdot \left(1 - \frac{n - 1}{n^3} \right) \\
+    Pr\{1 \cap 2 \cap \text{ ... } \cap n\} &= \prod_{i=1}^{n-1} 1 - \frac{i}{n^3} \\
+    \end{align}
+    $$
+    Since we only need to prove that $Pr\{1 \cap \text{ ... } \cap n\} \geq 1 - \frac{1}{n}$, then
+    $$
+    \begin{align}
+    Pr\{1 \cap 2 \cap \text{ ... } \cap n\} &= \prod_{i=1}^{n-1} 1 - \frac{i}{n^3} \\
+    Pr\{1 \cap 2 \cap \text{ ... } \cap n\} &\geq \prod_{i=1}^{n} 1 - \frac{n}{n^3} \\
+    Pr\{1 \cap 2 \cap \text{ ... } \cap n\} &\geq \prod_{i=1}^{n} 1 - \frac{1}{n^2} \\
+    Pr\{1 \cap 2 \cap \text{ ... } \cap n\} &\geq \left(1 - \frac{1}{n^2}\right)^n \\
+    \end{align}
+    $$
+  </body>
+</html>

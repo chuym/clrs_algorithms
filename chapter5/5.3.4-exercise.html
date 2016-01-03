@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 5.3</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercise 5.3.4</h1>
+    <h4>
+      Profssor Armostrong suggest the following procedure for generating a uniform random permutation:
+    </h4>
+    <pre>
+      n = A.length
+      let B[1..n] be a new array
+      offset = RANDOM(1, n)
+      for i = 1 to n
+        dest = 1 + offset
+        if dest > n
+          dest = dest - n
+        B[dest] = A[i]
+      return B
+    </pre>
+    Show that each element A[i] has $1/n$ probability of winding up in any particular position in $B$. Then show that Professor Armostrong is mistaken by showing that the resulting permutation is not uniformly random.
+    <p>
+      Any element $A[i]$ has $1/n$ probability of winding up in any particular position in $B$ because all elements in $A[i]$ are equally likely to be put in any $B[1..n]$ position - $dest$ is not calculated with any bias towards $i$ on each cycle.<br>
+    </p>
+    The resulting permutation is not uniform because dest will cycle and will be the same values for all iterations.
+  </body>
+</html>

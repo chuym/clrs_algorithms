@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 6.1</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercises 6.1</h1>
+    <ol type="1">
+      <li>
+        What are the minimum and maximum numbers of elements in a heap of height $h$?
+        <p>
+          The maximum number of elements of a heap of height $h$ is given by the function $M$
+          $$
+          M(h) = 2^{h-1}
+          $$
+
+          The minimum number of elements of a heap of height $h$ is given by the function $m$
+          $$
+          m(h) = 2^{h-2} + 1
+          $$
+        </p>
+      </li>
+      <li>
+        Show that an n-element heap has height $\lfloor \text{lg } n \rfloor$.
+        <p>
+          We can show this by noting that for any element $i$ in the heap, that is not the root, we can find its parent with the function $P$:
+          $$
+          P(i) = \lceil i/2 \rceil
+          $$
+
+          Then, we can calculate the height with the recurrence $H$:
+
+          $$
+          H(n) = \begin{cases} 1 &\mbox{if } n \equiv 1 \\
+          H(n/2) + 1 &\mbox{otherwise}
+          \end{cases}
+          $$
+
+          By the master theorem, we have $a = 1$, $b = 2$, $f(n) = 1$, case 2 applies as follows:
+          $$
+          f(n) = \Theta(n^{\text{log}_ba}) \\
+          1 = \Theta(n^{\text{log}_21}) \\
+          1 = \Theta(n^0) \\
+          1 = \Theta(1) \\
+          1 = 1
+          $$
+
+          Then, the recurrence solution is $\Theta(\text{lg }n)$
+        </p>
+      </li>
+    </ol>
+  </body>
+</html>

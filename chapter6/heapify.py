@@ -12,6 +12,38 @@ class Heap:
         self[a] = self[b]
         self[b] = temp
 
+    def maximum(self):
+        return self[1]
+
+    def max_heapify(self):
+        for i in xrange(self.heap_size >> 1, 0, -1):
+            max_heapify(self,i)
+
+    def extract_max(self):
+        if self.heap_size < 1:
+            raise 'Heap underflow'
+
+        top = self[1]
+        self[1] = self[self.heap_size]
+        self.heap_size = self.heap_size - 1
+        self.max_heapify()
+        return top
+
+    def increase_key(self, i, key):
+        if key < self[i]:
+            raise "new key is smaller than current key"
+        self[i] = key
+        while i > 1 and self[parent(i)] < self[i]:
+            self.swap(i, parent(i))
+            i = parent(i)
+
+    def insert(self, key):
+        self.heap_size += 1
+        self.length += 1
+        self.elements.append(key)
+        print self.elements
+        self.increase_key(self.heap_size, key)
+
     def __getitem__(self, key):
         return self.elements[key-1]
 
@@ -23,6 +55,9 @@ class Heap:
 
     def __str__(self):
         return str(self.elements)
+
+def parent(i):
+    return i >> 1
 
 def left(i):
     return i << 1

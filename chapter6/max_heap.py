@@ -39,16 +39,22 @@ class MaxHeap(Heap):
         if key < self[i]:
             raise "new key is smaller than current key"
         self[i] = key
-        while i > 1 and self[parent(i)] < key
+        while i > 1 and self[parent(i)] < key:
             self[i] = self[parent(i)]
             i = parent(i)
+        self[i] = key
 
     def insert(self, key):
         self.heap_size += 1
         self.length += 1
         self.elements.append(key)
-        print self.elements
         self.increase_key(self.heap_size, key)
+
+    def delete(self, i):
+        self.heap_size -= 1
+        self.length -= 1
+        self.elements.pop(i - 1)
+        self.max_heapify()
 
 def parent(i):
     return i >> 1

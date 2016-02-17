@@ -39,8 +39,8 @@ class MaxHeap(Heap):
         if key < self[i]:
             raise "new key is smaller than current key"
         self[i] = key
-        while i > 1 and self[parent(i)] < self[i]:
-            self.swap(i, parent(i))
+        while i > 1 and self[parent(i)] < key
+            self[i] = self[parent(i)]
             i = parent(i)
 
     def insert(self, key):

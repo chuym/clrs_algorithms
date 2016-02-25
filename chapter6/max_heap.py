@@ -1,12 +1,13 @@
-import heapify
+import dary_heap
+from math import ceil
 
 class MaxHeap(Heap):
-    def __init__(self, elements):
-        super(MaxHeap, self).__init__(elements)
+    def __init__(self, elements, **kwargs):
+        super(MaxHeap, self).__init__(elements, **kwargs)
         self.max_heapify()
     
     def max_heapify(self):
-        for i in xrange(self.heap_size >> 1, 0, -1):
+        for i in xrange(self.heap_size / self.arity, 0, -1):
             max_heapify(self, i)
 
     def extract_max(self):
@@ -56,25 +57,10 @@ class MaxHeap(Heap):
         self.elements.pop(i - 1)
         self.max_heapify()
 
-def parent(i):
-    return i >> 1
-
-def left(i):
-    return i << 1
-
-def right(i):
-    return (i << 1) + 1
-    
 def max_heapify(A, i):
-    l = left(i)
-    r = right(i)
+    children = A.children(i)
 
-    if l <= A.heap_size and A[l] > A[i]:
-        largest = l
-    else:
-        largest = i
-    if r <= A.heap_size and A[r] > A[largest]:
-        largest = r
+    largest = reduce(lambda c, v: v if v <= A.heap_size and A[v] > A[c] else c, children, i)
 
     if largest != i:
         A.swap(i, largest)

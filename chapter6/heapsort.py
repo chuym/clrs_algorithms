@@ -1,7 +1,7 @@
 import build_heap
 
 def heapsort(A):
-    heap = build_max_heap(A)
+    heap = MaxHeap(A)
     for i in xrange(heap.elements_length(), 1, -1):
         heap.swap(1, i)
         heap.heap_size = heap.heap_size - 1

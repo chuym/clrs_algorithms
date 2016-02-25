@@ -1,4 +1,4 @@
-class Heap:
+class Heap(object):
     def __init__(self, elements):
         self.elements = list(elements)
         self.heap_size = len(elements)

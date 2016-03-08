@@ -1,5 +1,3 @@
-import build_heap
-
 def heapsort(A):
     heap = MaxHeap(A)
     for i in xrange(heap.elements_length(), 1, -1):

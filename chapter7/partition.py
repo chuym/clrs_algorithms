@@ -1,6 +1,6 @@
 def quicksort(A):
     _quicksort(A, 0, len(A) - 1)
-    
+
 def _quicksort(A, p, r):
     if p < r:
         q = partition(A, p, r)

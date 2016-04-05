@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 7.3</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercises 7.3</h1>
+    <ol type="1">
+      <li>
+        Why do we analyze the expected running time of a randomized algorithm and not its worst-case running time?
+        <br>
+        <p>
+          In general terms, analyzing the running time using a randomized algorithm gives a better sense of the average-case running time.
+      </li>
+
+      <li>
+        When $\text{RANDOMIZED-QUICKSORT}$ runs, how many calls are made to the random-number generator $\text{RANDOM}$ in the worst case? How about in the best case?
+        <br>
+        <p>
+          Each step of quicksort does one call to RANDOM, since the worst-case running time of quicksort is $\Theta(n^2)$, then the number of calls to RANDOM is $\Theta(n^2)$ in the worst case.
+          <br>
+          Similarly, the best-case running time for quicksort is $\Theta(n)$, then it will do $\Theta(n)$ calls to RANDOM in the best case
+      </li>
+    </ol>
+  </body>
+</html>

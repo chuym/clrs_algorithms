@@ -21,14 +21,17 @@
         <br>
         <p>
           $$
-          T(n) = T(n-1) + \Theta(n) \\
-          T(n) = T(T(n - 2) + \Theta(n-1)) + \Theta(n) \\
-          T(n) = \sum^n_{i = 1} \Theta(i)
-          T(n) = \Theta(n^2)
+          \begin{align}
+            T(n) &= T(n-1) + \Theta(n) \\
+            T(n) &= T(T(n - 2) + \Theta(n-1)) + \Theta(n) \\
+            T(n) &= \sum^n_{i = 1} \Theta(i) \\
+            T(n) &= \Theta(n^2)
+          \end{align}
+          $$
         </p>
       </li>
       <li>
-        What is the running time of Quicksort when all elements of arra $A$ have the same value?
+        What is the running time of Quicksort when all elements of array $A$ have the same value?
         <br>
         <p>
           When all values in the Array are the same, this means that Partition will generate two arrays, one of them empty and the second one of length A'[A.length - 1]. After that, each subsequent partition will generate a new array that one of them is empty and the other is A''[A'.length - 1]. Thus, the running time will be $\Theta(n^2)$
@@ -56,7 +59,29 @@
               Then, if the average problem consists of an almost-sorted array, we can conclude that the average case for these problems will tend to lean towards the best case scenario for insertion sort and for the worst case scenario of quicksort.
       </li>
       <li>
-          Suppose that the splits at ever level of quicksort are in the propotion of $1 - \alpha$ to $\alpha$, where $0 \lt \alpha \leq 1/2$ is a constant. Show that the minimum depth of a leaf in the recursion tree is approximately $\text{lg }n / \text{lg }\alpha$ and the maximum depth is approximately $\text{lg }n / \text{lg}(1 - \alpha)$.
+          Suppose that the splits at every level of quicksort are in the propotion of $1 - \alpha$ to $\alpha$, where $0 \lt \alpha \leq 1/2$ is a constant. Show that the minimum depth of a leaf in the recursion tree is approximately $\text{lg }n / \text{lg }\alpha$ and the maximum depth is approximately $\text{lg }n / \text{lg}(1 - \alpha)$.
+          <br>
+          <p>
+            The following gives the depth $d$ for the 'left-side'
+            \begin{align}
+              n\alpha^d &\leq 1 \\
+              \alpha^d &\leq \frac{1}{n} \\
+              d &\leq \text{log}_\alpha\frac{1}{n} \\
+              d &\leq \text{log}_\alpha 1 - \text{log}_\alpha n && \text{Applying logarithmic rules}\\
+              d &\leq -\text{log}_\alpha n \\
+              d &\leq -\frac{\text{lg}n}{\text{lg}\alpha} && \text{Changed log base to 2, hence lg}
+            \end{align}
+
+            The following will give the depth $d$ for the 'right-side'
+
+            \begin{align}
+              n(1 - \alpha)^d &\leq 1 \\
+              (1 - \alpha)^d &\leq \frac{1}{n} \\
+              d &\leq \text{log}_{(1 - \alpha)}\frac{1}{n} \\
+              d &\leq \text{log}_{(1 - \alpha)} 1 - \text{log}_{(1 - \alpha)} n && \text{Applying logarithmic rules}\\
+              d &\leq -\text{log}_{(1 - \alpha)} n \\
+              d &\leq -\frac{\text{lg}n}{\text{lg}(1 - \alpha)} && \text{Changed log base to 2, hence lg}
+            \end{align}
       </li>
     </ol>
   </body>

@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>CLRS Algorithms - Exercises 7.4</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+  </head>
+  <body>
+    <h1>Exercises 7.4</h1>
+    <ol type="1">
+      <li>
+        Show that the expression $q^2 + (n - q - 1)^2$ achieves a maximum over $q = 0,1...,n-1$ when $q = 0$ or $q = n - 1$
+        <br>
+        <p>
+        $$
+        \begin{align}
+          f(q) &= q^2 + (n - q - 1)^2 \\
+          f'(q) &= 2q + 2 \cdot (n - q - 1) \cdot [n - q - 1]' \\
+          f'(q) &= 2q + 2 \cdot (n - q - 1) \cdot (0 - 1 - 0) \\
+          f'(q) &= 2q - 2 \cdot (n - q - 1) \\
+          f'(q) &= 2q - 2n + 2q + 2 \\
+          f'(q) &= 4q - 2n + 2 \\
+          f'(q) &= 4q - 2n + 2 && \text{This is the first derivative of the expression} \\
+          f''(q) &= 4 && \text{This is the second derivative of the expression} \\
+        \end{align}
+        $$
+
+        The critical point of the derivative is reached when $f'(q) = 0$:
+        $$
+        \begin{align}
+          4q - 2n + 2 &= 0 \\
+          4q &= 2n - 2 \\
+          q &= \frac{2n - 2}{4} \\
+          q &= \frac{1}{2}n - \frac{1}{2}
+        \end{align}
+        $$
+
+        A critical point is reached when $q = \frac{1}{2}n - \frac{1}{2}$. <br>
+        Since the second derivative is positive, then the critical point represents a local minimum, this also means that the first derivative increases as $q$ increases.
+        This means that as $q$ approaches the critical point from $0$, it decreases, thus $0$ is a maximum for $f(q)$. Similarly, as $q$ approaches $q = n - 1$ from $q = \frac{1}{2}n - \frac{1}{2}$, it increases
+        thus a maximum is also reached when $q = n - 1$.
+      </li>
+    </ol>
+  </body>
+</html>
+

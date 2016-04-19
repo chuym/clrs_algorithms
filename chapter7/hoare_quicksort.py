@@ -4,7 +4,7 @@ def quicksort(A):
 def _quicksort(A, p, r):
     if p < r:
         q = partition(A, p, r)
-        _quicksort(A, p, q - 1)
+        _quicksort(A, p, q)
         _quicksort(A, q + 1, r)
 
 def partition(A, p, r):
@@ -24,11 +24,6 @@ def partition(A, p, r):
                 break
 
         if i < j:
-            swap(A, i, j)
+            A[i], A[j] = A[j], A[i]
         else:
             return j
-  
-def swap(A, i, j):
-    temp = A[i]
-    A[i] = A[j]
-    A[j] = temp
